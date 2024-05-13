@@ -29,7 +29,6 @@ public class UserController {
         User user = BeanUtil.copyProperties(userDTO, User.class);
         // 2.新增
         userService.save(user);
-
     }
 
     @ApiOperation("删除用户接口")
@@ -49,11 +48,18 @@ public class UserController {
 
     @ApiOperation("根据id批量查询用户接口")
     @GetMapping
-    public List<UserVO> queryUserById(@ApiParam("用户id集合") @PathVariable("ids") List<Long> ids){
+    public List<UserVO> queryUserById(@ApiParam("用户id集合") @RequestParam("ids") List<Long> ids){
         // 1. 查询用户PO
         List<User> users = userService.listByIds(ids);
         // 2. 把PO拷贝到VO
         return BeanUtil.copyToList(users, UserVO.class);
+    }
+
+    @ApiOperation("扣减用户余额接口")
+    @PutMapping("/{id}/deduction/{money}")
+    public void queryUserById(@ApiParam("用户id") @PathVariable("id") Long id,
+                                      @ApiParam("扣减的金额") @PathVariable("money") Integer money){
+        userService.deductBalance(id, money);
     }
 
 

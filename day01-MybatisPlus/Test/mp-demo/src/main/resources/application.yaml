@@ -17,7 +17,7 @@ mybatis-plus:
 
   global-config:
     db-config:
-      id-type: auto
+      id-type: ASSIGN_ID # 默认为ASSIGN_ID，雪花算法
 
 knife4j:
   enable: true
