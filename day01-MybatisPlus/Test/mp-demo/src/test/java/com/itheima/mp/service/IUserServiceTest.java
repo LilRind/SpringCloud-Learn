@@ -18,9 +18,9 @@ class IUserServiceTest {
     void testSaveUser() {
         User user = new User();
         // user.setId(5L);
-        user.setUsername("LiLei");
+        user.setUsername("ErGouZi");
         user.setPassword("123");
-        user.setPhone("18688990011");
+        user.setPhone("17135154830");
         user.setBalance(200);
         user.setInfo("{\"age\": 24, \"intro\": \"英文老师\", \"gender\": \"female\"}");
         user.setCreateTime(LocalDateTime.now());
