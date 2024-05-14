@@ -116,6 +116,30 @@ docker rm -f nginx
 
 exit
 
+### Docker 命令别名
+可以将一些常用命令映射成简短的别名来使用
+
+修改/root/.bashrc文件
+
+vi /root/.bashrc
+
+新增2条内容如下，例如：
+
+alias dps='docker ps --format "table {{.ID}}\t{{.Image}}\t{{.Ports}}\t{{.Status}}\t{{.Names}}"'
+
+alias dis='docker images'
+
+![image](https://github.com/LilRind/SpringCloud-Learn/assets/66501637/a3c5437f-3f31-42ea-9151-c0d9baa4e3a6)
+
+执行命令使别名生效
+
+source /root/.bashrc
+
+执行dps查看运行中的容器进程，注意需要start容器：
+
+![image](https://github.com/LilRind/SpringCloud-Learn/assets/66501637/c88e4a4e-3b38-4ba1-b200-87e802229dd1)
+
+
 
 ## Nacos
 
