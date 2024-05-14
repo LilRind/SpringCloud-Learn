@@ -195,6 +195,19 @@ vi index.html
 
 ![image](https://github.com/LilRind/SpringCloud-Learn/assets/66501637/69e195c2-b8cb-4213-862d-8e276dae3e15)
 
+进入容器内部对应目录，查看目录内的文件是否变化
+
+docker exec -it nginx bash
+
+cd /usr/share/nginx/html
+
+ls
+
+可以看到宿主机和容器内的文件是完全一致的
+![image](https://github.com/LilRind/SpringCloud-Learn/assets/66501637/e833134f-3bd2-40eb-b428-d292b9180b18)
+
+
+
 
 
 
