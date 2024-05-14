@@ -147,6 +147,8 @@ source /root/.bashrc
 
 docker volume create
 
+#### 常见命令：
+
 创建数据卷
 
 docker volume ls
@@ -164,6 +166,35 @@ docker volume inspect
 docker volume prune
 
 清除数据卷
+
+#### nginx的html目录挂载
+
+首先创建容器并指定数据卷，注意通过 -v 参数来指定数据卷
+
+docker run -d --name nginx -p 80:80 -v html:/usr/share/nginx/html nginx
+
+然后查看数据卷
+
+docker volume ls
+
+查看数据卷详情
+
+docker volume inspect html
+
+查看/var/lib/docker/volumes/html/_data目录
+
+ll /var/lib/docker/volumes/html/_data
+
+进入该目录，并随意修改index.html内容
+
+cd /var/lib/docker/volumes/html/_data
+
+vi index.html
+
+或者进入该../_data 目录后使用ssh连接终端所有的修改文件功能，图形式界面修改index.html文件：
+
+![image](https://github.com/LilRind/SpringCloud-Learn/assets/66501637/69e195c2-b8cb-4213-862d-8e276dae3e15)
+
 
 
 
