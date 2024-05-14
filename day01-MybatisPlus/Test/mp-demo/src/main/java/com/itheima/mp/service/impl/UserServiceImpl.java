@@ -118,38 +118,47 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     public PageDTO<UserVO> queryUsersPage(UserQuery query) {
         String name = query.getName();
         Integer status = query.getStatus();
+//        // 1. 构建分页条件
+//        // 1.1 分页条件
+//        Page<User> page = Page.of(query.getPageNo(), query.getPageSize());
+//        // 1.2 排序条件
+//        Page<User> page = query.toMpPageDefaultSortByUpdateTime();
+
         // 1. 构建分页条件
-        // 1.1 分页条件
-        Page<User> page = Page.of(query.getPageNo(), query.getPageSize());
-        // 1.2 排序条件
-        if(StrUtil.isNotBlank(query.getSortBy())){
-            // 不为空
-            page.addOrder(new OrderItem(query.getSortBy(), query.getIsAsc()));
-        }else {
-            // 为空，默认按照更新时间排序
-            page.addOrder(new OrderItem("update_time", false));
-        }
+        Page<User> page = query.toMpPageDefaultSortByUpdateTime();
 
         // 2. 分页查询
         Page<User> p = lambdaQuery()
                 .like(name != null, User::getUsername, name)
                 .eq(status != null, User::getStatus, status)
                 .page(page);
-        // 3. 封装VO结果
-        PageDTO<UserVO> dto = new PageDTO<>();
-        // 3.1 总条数
-        dto.setTotal(p.getTotal());
-        // 3.2 总页数
-        dto.setPages(p.getPages());
-        // 3.3 当前页数据
-        List<User> records = p.getRecords();
-        if(CollUtil.isEmpty(records)){
-            dto.setList(Collections.emptyList());
-            return dto;
-        }
-        // 3.4 拷贝user的VO
-        dto.setList(BeanUtil.copyToList(records, UserVO.class));
-        // 4. 返回
-        return dto;
+
+        // 3. 封装VO结果，变量名一致，直接拷贝
+//        return PageDTO.of(p, UserVO.class);
+        // 3. 封装VO结果，自定义函数式处理
+        return PageDTO.of(p, user-> {
+            // 1. 拷贝基础属性
+            UserVO vo = BeanUtil.copyProperties(user, UserVO.class);
+            // 2. 处理特殊逻辑，隐藏后两位用户名
+            vo.setUsername(vo.getUsername().substring(0, vo.getUsername().length() - 2) + "**");
+            return vo;
+        });
+
+//        // 3. 封装VO结果
+//        PageDTO<UserVO> dto = new PageDTO<>();
+//        // 3.1 总条数
+//        dto.setTotal(p.getTotal());
+//        // 3.2 总页数
+//        dto.setPages(p.getPages());
+//        // 3.3 当前页数据
+//        List<User> records = p.getRecords();
+//        if(CollUtil.isEmpty(records)){
+//            dto.setList(Collections.emptyList());
+//            return dto;
+//        }
+//        // 3.4 拷贝user的VO
+//        dto.setList(BeanUtil.copyToList(records, UserVO.class));
+//        // 4. 返回
+//        return dto;
     }
 }
