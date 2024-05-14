@@ -126,4 +126,6 @@ class UserMapperTest {
         userMapper.updateBalanceByIds(wrapper, amount);
     }
 
+
+
 }

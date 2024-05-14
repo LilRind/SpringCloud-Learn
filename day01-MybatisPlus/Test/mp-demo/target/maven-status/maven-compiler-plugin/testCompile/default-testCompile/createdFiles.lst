@@ -1,0 +1,4 @@
+com\itheima\mp\MpDemoApplicationTests.class
+com\itheima\mp\service\IAddressServiceTest.class
+com\itheima\mp\mapper\UserMapperTest.class
+com\itheima\mp\service\IUserServiceTest.class
