@@ -19,7 +19,9 @@ mybatis-plus:
     db-config:
       id-type: auto # 默认为ASSIGN_ID，雪花算法
       logic-delete-field: deleted # 配置逻辑删除字段 UPDATE 表名 SET deleted=1 WHERE id=? AND deleted=0
-
+  configuration:
+      default-enum-type-handler: com.baomidou.mybatisplus.core.handlers.MybatisEnumTypeHandler
+      # 配置枚举处理类
 
 knife4j:
   enable: true
