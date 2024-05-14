@@ -139,6 +139,32 @@ source /root/.bashrc
 
 ![image](https://github.com/LilRind/SpringCloud-Learn/assets/66501637/c88e4a4e-3b38-4ba1-b200-87e802229dd1)
 
+### 数据卷挂载
+
+宿主机linux下是固定目录
+
+![image](https://github.com/LilRind/SpringCloud-Learn/assets/66501637/04e61283-102c-48f2-b35e-7dae2637d3fb)
+
+docker volume create
+
+创建数据卷
+
+docker volume ls
+
+查看所有数据卷
+
+docker volume rm
+
+删除指定数据卷
+
+docker volume inspect
+
+查看某个数据卷的详情
+
+docker volume prune
+
+清除数据卷
+
 
 
 ## Nacos
