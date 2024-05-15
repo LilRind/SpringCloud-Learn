@@ -173,6 +173,9 @@ docker volume prune
 
 docker run -d --name nginx -p 80:80 -v html:/usr/share/nginx/html nginx
 
+![Uploading image.png…]()
+
+
 然后查看数据卷
 
 docker volume ls
